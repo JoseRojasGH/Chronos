@@ -1,4 +1,3 @@
-import './App.css';
 import Home from './Pages/Home';
 import Productos from './Pages/Productos';
 import Contacto from './Pages/Contacto';
@@ -39,8 +38,8 @@ function App() {
           <Route path="/admin-productos-nuevo" element={<CrearProducto />} />
           <Route path="/admin-usuarios-lista" element={<MostrarUsuarios />} />
           <Route path="/admin-productos-lista" element={<MostrarProductos />} />
-          <Route path="/admin-usuarios-editar" element={<EditarUsuario />} />
-          <Route path="/admin-productos-editar" element={<EditarProducto />} />
+          <Route path="/admin-usuarios-editar/:id" element={<EditarUsuario />} />
+          <Route path="/admin-productos-editar/:id" element={<EditarProducto />} />
         </Routes>
     </BrowserRouter>
   );

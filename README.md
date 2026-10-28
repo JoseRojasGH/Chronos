@@ -1,3 +1,35 @@
+# Chronos
+
+Tienda web de relojes desarrollada en React (Create React App).
+
+## Datos compartidos (contrato de datos)
+
+Varias partes del proyecto leen y escriben la misma información en `localStorage`. Para que los módulos no se rompan entre sí, todos siguen estas reglas.
+
+| Datos | Clave en localStorage | Forma del objeto | Cómo leer y escribir |
+|---|---|---|---|
+| Usuarios | `chronos_usuarios` | `src/models/Usuario.js` | Solo mediante `src/services/usuarioService.js` |
+| Sesión | Pendiente (la define Login) | Pendiente | Pendiente |
+| Productos | Pendiente (la define el módulo de productos) | Pendiente | Pendiente |
+
+### Reglas
+
+1. **No escribir en `localStorage` directamente.** Usar siempre el servicio correspondiente: es el que normaliza los datos (por ejemplo, el correo en minúsculas) y evita duplicados.
+2. **Los ids son texto (string).** `useParams()` siempre devuelve texto, así que comparar con ids numéricos falla sin mostrar errores.
+3. **Agregar un campo es seguro; renombrar o eliminar uno rompe otros módulos.** Antes de renombrar o eliminar, avisar al equipo.
+4. **Todo pull request que modifique `src/models/` o `src/services/` debe ser revisado por otro integrante** antes del merge.
+5. **Antes de cada push, ejecutar `npm test`.** Las pruebas de contrato (`*.contrato.test.js`) fallan si alguien cambia una clave, un nombre de campo o una regla de normalización.
+
+### Cuándo actualizar esta sección
+
+Solo al agregar una nueva área de datos compartidos (por ejemplo, cuando se definan Sesión o Productos). Los campos de cada objeto **no** se listan aquí: la fuente de verdad es el archivo del modelo.
+
+### Deuda técnica conocida
+
+- Las contraseñas se guardan en texto plano en `localStorage` porque el proyecto no tiene backend. No es un sistema de autenticación real.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
