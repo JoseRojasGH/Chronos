@@ -1,0 +1,150 @@
+
+/* Pagina completa */
+.login-pagina {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Contenedor del formulario */
+.login-contenedor {
+  background-color: rgba(12, 12, 12, 0.95);
+  border: 1px solid #55451e;
+  border-radius: 12px;
+  padding: 45px;
+  width: 100%;
+  max-width: 430px;
+  color: white;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.login-logo {
+  width: 210px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Textos */
+.login-etiqueta {
+  color: #d4af37;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.login-contenedor h1 {
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-weight: normal;
+  margin: 15px 0;
+}
+
+.login-descripcion {
+  color: #aaaaaa;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* Formulario */
+.login-contenedor form {
+  text-align: left;
+}
+
+.login-contenedor label {
+  display: block;
+  margin-bottom: 8px;
+  color: #dddddd;
+  font-size: 14px;
+}
+
+.login-contenedor input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 22px;
+  background-color: #1b1b1b;
+  border: 1px solid #444444;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.login-contenedor input:focus {
+  outline: none;
+  border-color: #d4af37;
+}
+
+/* Boton ingresar */
+.login-boton {
+  width: 100%;
+  background-color: #d4af37;
+  color: #111111;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-boton:hover {
+  background-color: #f0ce65;
+}
+
+/* Mensaje de validacion */
+.login-mensaje {
+  color: #d4af37;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* Registro */
+.login-registro {
+  margin-top: 28px;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+.login-registro a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-registro a:hover {
+  text-decoration: underline;
+}
+
+/* Volver al inicio */
+.login-volver {
+  display: inline-block;
+  margin-top: 18px;
+  color: #dddddd;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.login-volver:hover {
+  color: #d4af37;
+}
+
+/* Adaptacion a celulares */
+@media (max-width: 480px) {
+  .login-contenedor {
+    padding: 30px 22px;
+  }
+
+  .login-contenedor h1 {
+    font-size: 29px;
+  }
+}

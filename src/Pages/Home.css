@@ -1,0 +1,457 @@
+
+/* Configuracion general */
+.home {
+  background-color: #0b0b0b;
+  color: white;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.home * {
+  box-sizing: border-box;
+}
+
+/* Encabezado */
+.header-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 20px 5%;
+  background-color: #0b0b0b;
+  border-bottom: 1px solid #302718;
+}
+
+.logo-home img {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.menu-home {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.menu-home a,
+.cuenta-home a {
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.menu-home a {
+  color: #dddddd;
+}
+
+.menu-home a:hover {
+  color: #d4af37;
+}
+
+.cuenta-home {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.enlace-registro {
+  color: #dddddd;
+}
+
+.enlace-registro:hover {
+  color: #d4af37;
+}
+
+.boton-login {
+  color: #101010;
+  background-color: #d4af37;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.boton-login:hover {
+  background-color: #f0ce65;
+}
+
+/* Presentacion principal */
+.inicio-home {
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  padding: 90px 8%;
+  background-size: cover;
+  background-position: center;
+}
+
+.contenido-inicio {
+  max-width: 700px;
+}
+
+.etiqueta-home {
+  color: #d4af37;
+  font-size: 13px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.inicio-home h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(42px, 5vw, 76px);
+  line-height: 1.15;
+  font-weight: normal;
+  margin: 0 0 25px;
+}
+
+.inicio-home h1 span {
+  color: #d4af37;
+}
+
+.descripcion-home {
+  font-size: 18px;
+  color: #d0d0d0;
+  line-height: 1.9;
+  max-width: 570px;
+}
+
+.botones-home {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+.boton-principal,
+.boton-secundario {
+  display: inline-block;
+  text-decoration: none;
+  padding: 16px 28px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.boton-principal {
+  background-color: #d4af37;
+  color: #111111;
+}
+
+.boton-principal:hover {
+  background-color: #f0ce65;
+  transform: translateY(-3px);
+}
+
+.boton-secundario {
+  border: 1px solid #d4af37;
+  color: white;
+}
+
+.boton-secundario:hover {
+  background-color: #d4af37;
+  color: #111111;
+}
+
+/* Beneficios */
+.beneficios-home {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  padding: 50px 8%;
+  background-color: #151515;
+  border-bottom: 1px solid #302718;
+}
+
+.beneficio {
+  text-align: center;
+  flex: 1;
+}
+
+.beneficio h3 {
+  color: #d4af37;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 12px;
+}
+
+.beneficio p {
+  color: #aaaaaa;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Productos destacados */
+.productos-destacados {
+  padding: 100px 7%;
+  text-align: center;
+  background-color: #0b0b0b;
+}
+
+.subtitulo-seccion {
+  color: #d4af37;
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.productos-destacados h2 {
+  font-family: Georgia, serif;
+  font-size: 42px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.descripcion-seccion {
+  color: #aaaaaa;
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 550px;
+  margin: 0 auto 50px;
+}
+
+.lista-relojes {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.reloj {
+  background-color: #171717;
+  border: 1px solid #302718;
+  border-radius: 8px;
+  width: 310px;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.reloj:hover {
+  transform: translateY(-8px);
+  border-color: #d4af37;
+}
+
+/* Imagen del reloj */
+.imagen-reloj {
+  height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #202020;
+  padding: 20px;
+}
+
+.imagen-reloj img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s;
+}
+
+.reloj:hover .imagen-reloj img {
+  transform: scale(1.12);
+}
+
+/* Informacion del reloj */
+.informacion-reloj {
+  padding: 25px;
+}
+
+.marca-reloj {
+  color: #d4af37;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.informacion-reloj h3 {
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: normal;
+  margin: 12px 0;
+}
+
+.precio-reloj {
+  color: white;
+  font-size: 21px;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.informacion-reloj a {
+  display: inline-block;
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 14px;
+  border-bottom: 1px solid #d4af37;
+  padding-bottom: 5px;
+}
+
+.informacion-reloj a:hover {
+  color: #f0ce65;
+}
+
+.boton-todos {
+  display: inline-block;
+  margin-top: 55px;
+  padding: 15px 35px;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  color: #d4af37;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.boton-todos:hover {
+  background-color: #d4af37;
+  color: #111111;
+}
+
+/* Invitacion */
+.invitacion-home {
+  text-align: center;
+  padding: 100px 20px;
+  background-color: #202020;
+}
+
+.invitacion-home > p {
+  color: #d4af37;
+  font-size: 12px;
+  letter-spacing: 4px;
+}
+
+.invitacion-home h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: normal;
+  max-width: 700px;
+  margin: 25px auto 35px;
+  line-height: 1.4;
+}
+
+.invitacion-home h2 span {
+  color: #d4af37;
+}
+
+/* Pie de pagina */
+.footer-home {
+  background-color: #050505;
+  padding: 60px 8% 20px;
+  border-top: 1px solid #302718;
+}
+
+.footer-contenido {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.footer-marca h2 {
+  font-family: Georgia, serif;
+  color: #d4af37;
+  font-size: 32px;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+}
+
+.footer-marca p {
+  color: #999999;
+  font-size: 14px;
+}
+
+.footer-enlaces {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-enlaces h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.footer-enlaces a {
+  color: #999999;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-enlaces a:hover {
+  color: #d4af37;
+}
+
+.footer-final {
+  text-align: center;
+  border-top: 1px solid #252525;
+  padding-top: 25px;
+  color: #777777;
+  font-size: 13px;
+}
+
+/* Diseño para celulares */
+@media (max-width: 900px) {
+
+  .header-home {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .menu-home {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .inicio-home {
+    min-height: 550px;
+    padding: 70px 6%;
+  }
+
+  .beneficios-home {
+    flex-direction: column;
+  }
+
+  .productos-destacados {
+    padding: 70px 5%;
+  }
+
+  .footer-contenido {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .inicio-home h1 {
+    font-size: 40px;
+  }
+
+  .descripcion-home {
+    font-size: 16px;
+  }
+
+  .botones-home {
+    flex-direction: column;
+  }
+
+  .boton-principal,
+  .boton-secundario {
+    text-align: center;
+  }
+
+  .productos-destacados h2 {
+    font-size: 34px;
+  }
+
+  .cuenta-home {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
