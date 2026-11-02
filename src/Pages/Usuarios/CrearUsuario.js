@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import UsuarioForm from '../components/usuarios/UsuarioForm';
-import { crear } from '../services/usuarioService';
+import UsuarioForm from '../../components/usuarios/UsuarioForm';
+import { crear } from '../../services/usuarioService';
 
 function CrearUsuario() {
   const navigate = useNavigate();

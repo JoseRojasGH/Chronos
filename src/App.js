@@ -8,14 +8,14 @@ import Blogs from './Pages/Blogs';
 import Blog1 from './Pages/Blog1';
 import Blog2 from './Pages/Blog2';
 import HomeAdmin from './Pages/HomeAdmin';
-import HomeProductos from './Pages/HomeProductos';
-import HomeUsuarios from './Pages/HomeUsuarios';
-import CrearUsuario from './Pages/CrearUsuario';
+import HomeProductos from './Pages/HomeProductos'; 
 import CrearProducto from './Pages/CrearProducto';
-import MostrarUsuarios from './Pages/MostrarUsuarios';
 import MostrarProductos from './Pages/MostrarProductos';
-import EditarUsuario from './Pages/EditarUsuario';
 import EditarProducto from './Pages/EditarProducto';
+import HomeUsuarios from './Pages/Usuarios/HomeUsuarios';
+import CrearUsuario from './Pages/Usuarios/CrearUsuario';
+import MostrarUsuarios from './Pages/Usuarios/MostrarUsuarios';
+import EditarUsuario from './Pages/Usuarios/EditarUsuario';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
