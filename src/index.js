@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { asegurarAdminInicial } from './services/usuarioService';
+
+// Crea el administrador inicial si no existe ninguno (ver README).
+asegurarAdminInicial();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

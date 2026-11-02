@@ -18,11 +18,28 @@ Varias partes del proyecto leen y escriben la misma información en `localStorag
 2. **Los ids son texto (string).** `useParams()` siempre devuelve texto, así que comparar con ids numéricos falla sin mostrar errores.
 3. **Agregar un campo es seguro; renombrar o eliminar uno rompe otros módulos.** Antes de renombrar o eliminar, avisar al equipo.
 4. **Todo pull request que modifique `src/models/` o `src/services/` debe ser revisado por otro integrante** antes del merge.
-5. **Antes de cada push, ejecutar `npm test`.** Las pruebas de contrato (`*.contrato.test.js`) fallan si alguien cambia una clave, un nombre de campo o una regla de normalización.
+5. **Antes de cada push, ejecutar `npm test`.** Las pruebas de contrato (`*.contrato.test.js`) y de reglas (`*.reglas.test.js`) fallan si alguien cambia una clave, un nombre de campo o una regla de normalización.
 
 ### Cuándo actualizar esta sección
 
 Solo al agregar una nueva área de datos compartidos (por ejemplo, cuando se definan Sesión o Productos). Los campos de cada objeto **no** se listan aquí: la fuente de verdad es el archivo del modelo.
+
+### Administrador inicial
+
+Al iniciar la aplicación, si no existe ningún administrador, se crea automáticamente esta cuenta (`asegurarAdminInicial()` en `index.js`):
+
+| Correo | Contraseña |
+|---|---|
+| `adminduoc@chronos.cl` | `Duoc2026$#` |
+
+Reglas:
+- El sistema nunca puede quedar sin administradores: no se puede eliminar al último administrador ni quitarle el rol `admin`. Para hacerlo, primero hay que crear otro administrador.
+- Si alguien registró ese correo como cliente y no hay administradores, la cuenta se convierte en administrador y su contraseña vuelve a la de esta tabla.
+- Estas credenciales son solo para la demostración (repositorio público, sin backend). No reutilizar esta contraseña en cuentas reales.
+
+### Para Login
+
+Para buscar un usuario por correo, usar `obtenerPorCorreo(correo)` de `usuarioService`. Ignora mayúsculas y espacios, y devuelve `null` si no existe. Comparar la contraseña y guardar la sesión es responsabilidad del módulo de Login.
 
 ### Deuda técnica conocida
 
