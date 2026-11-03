@@ -1,32 +1,58 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { crear } from '../services/usuarioService';
+import { validarUsuario } from '../utils/validacionesUsuario';
+import { ROLES } from '../models/Usuario';
 import './Registro.css';
 
 function Registro() {
 
   const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
   const [correo, setCorreo] = useState('');
-  const [clave, setClave] = useState('');
-  const [confirmar, setConfirmar] = useState('');
+  const [contrasena, setContrasena] = useState('');
+  const [confirmacion, setConfirmacion] = useState('');
   const [mensaje, setMensaje] = useState('');
 
   function registrar(e) {
     e.preventDefault();
 
-    if (
-      nombre.trim() === '' ||
-      correo.trim() === '' ||
-      clave === '' ||
-      confirmar === ''
-    ) {
-      setMensaje('Debes completar todos los campos');
-    } else if (clave.length < 4 || clave.length > 10) {
-      setMensaje('La contraseña debe tener entre 4 y 10 caracteres');
-    } else if (clave !== confirmar) {
-      setMensaje('Las contraseñas no coinciden');
-    } else {
-      setMensaje('Formulario de registro completado correctamente');
+    const datos = {
+      nombre,
+      apellido,
+      correo,
+      contrasena,
+      confirmacion,
+      rol: ROLES.CLIENTE
+    };
+
+    const errores = validarUsuario(datos);
+
+    if (Object.keys(errores).length > 0) {
+      setMensaje(Object.values(errores)[0]);
+      return;
+    }
+
+    try {
+      crear({
+        nombre,
+        apellido,
+        correo,
+        contrasena,
+        rol: ROLES.CLIENTE
+      });
+
+      setMensaje('¡Cuenta creada correctamente! Ya puedes iniciar sesión.');
+
+      setNombre('');
+      setApellido('');
+      setCorreo('');
+      setContrasena('');
+      setConfirmacion('');
+
+    } catch (error) {
+      setMensaje('No se pudo crear la cuenta. Inténtalo nuevamente.');
     }
   }
 
@@ -63,13 +89,23 @@ function Registro() {
         {/* Formulario */}
         <form onSubmit={registrar}>
 
-          <label htmlFor="nombre">Nombre completo</label>
+          <label htmlFor="nombre">Nombre</label>
           <input
             id="nombre"
             type="text"
-            placeholder="Ingresa tu nombre completo"
+            placeholder="Ingresa tu nombre"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+
+          <label htmlFor="apellido">Apellido</label>
+          <input
+            id="apellido"
+            type="text"
+            placeholder="Ingresa tu apellido"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
             required
           />
 
@@ -89,9 +125,9 @@ function Registro() {
           <input
             id="claveRegistro"
             type="password"
-            placeholder="Entre 4 y 10 caracteres"
-            value={clave}
-            onChange={(e) => setClave(e.target.value)}
+            placeholder="Mínimo 8 caracteres, mayúscula y número"
+            value={contrasena}
+            onChange={(e) => setContrasena(e.target.value)}
             required
           />
 
@@ -102,8 +138,8 @@ function Registro() {
             id="confirmarClave"
             type="password"
             placeholder="Repite tu contraseña"
-            value={confirmar}
-            onChange={(e) => setConfirmar(e.target.value)}
+            value={confirmacion}
+            onChange={(e) => setConfirmacion(e.target.value)}
             required
           />
 
@@ -113,7 +149,7 @@ function Registro() {
 
         </form>
 
-        {/* Mensaje de validacion */}
+        {/* Mensaje de validación */}
         {mensaje && (
           <p className="registro-mensaje">{mensaje}</p>
         )}

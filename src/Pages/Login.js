@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { obtenerPorCorreo } from '../services/usuarioService';
+import { ROLES } from '../models/Usuario';
 import './Login.css';
 
 function Login() {
@@ -9,15 +11,29 @@ function Login() {
   const [clave, setClave] = useState('');
   const [mensaje, setMensaje] = useState('');
 
+  const navigate = useNavigate();
+
   function ingresar(e) {
     e.preventDefault();
 
-    if (correo === '' || clave === '') {
+    if (correo.trim() === '' || clave === '') {
       setMensaje('Debes completar todos los campos');
-    } else if (clave.length < 4 || clave.length > 10) {
-      setMensaje('La contraseña debe tener entre 4 y 10 caracteres');
+      return;
+    }
+
+    const usuario = obtenerPorCorreo(correo.trim().toLowerCase());
+
+    if (!usuario || usuario.contrasena !== clave) {
+      setMensaje('Correo o contraseña incorrectos');
+      return;
+    }
+
+    setMensaje('');
+
+    if (usuario.rol === ROLES.ADMIN) {
+      navigate('/admin-home');
     } else {
-      setMensaje('Formulario completado correctamente');
+      navigate('/');
     }
   }
 
@@ -40,7 +56,9 @@ function Login() {
           />
         </Link>
 
-        <p className="login-etiqueta">BIENVENIDO A CHRONOS</p>
+        <p className="login-etiqueta">
+          BIENVENIDO A CHRONOS
+        </p>
 
         <h1>Iniciar sesión</h1>
 
