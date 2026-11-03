@@ -294,6 +294,40 @@
   margin-bottom: 1.75rem;
 }
 
+/* Inicio del panel admin */
+.opciones-admin {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.tarjeta-admin {
+  border-top: 2px solid var(--ch-oro);
+  transition: border-color var(--ch-transicion), transform 0.2s ease;
+}
+
+.tarjeta-admin:hover {
+  transform: translateY(-2px);
+}
+
+.tarjeta-admin h2 {
+  font-size: 1.4rem;
+}
+
+.tarjeta-admin--pendiente {
+  border-top-color: var(--ch-borde);
+}
+
+.tarjeta-admin--pendiente:hover {
+  transform: none;
+}
+
+.aviso-pendiente {
+  color: var(--ch-texto-suave);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 /* Nosotros */
 .pagina-nosotros {
   flex: 1;
@@ -358,7 +392,8 @@
   }
 
   .btn-chronos:hover,
-  .btn-chronos-contorno:hover {
+  .btn-chronos-contorno:hover,
+  .tarjeta-admin:hover {
     transform: none;
   }
 }
