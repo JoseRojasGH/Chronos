@@ -1,0 +1,153 @@
+
+/* Pagina completa */
+.registro-pagina {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Contenedor del formulario */
+.registro-contenedor {
+  background-color: rgba(12, 12, 12, 0.95);
+  border: 1px solid #55451e;
+  border-radius: 12px;
+  padding: 45px;
+  width: 100%;
+  max-width: 450px;
+  color: white;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.registro-logo {
+  width: 210px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Textos */
+.registro-etiqueta {
+  color: #d4af37;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.registro-contenedor h1 {
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-weight: normal;
+  margin: 15px 0;
+}
+
+.registro-descripcion {
+  color: #aaaaaa;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Formulario */
+.registro-contenedor form {
+  text-align: left;
+}
+
+.registro-contenedor label {
+  display: block;
+  margin-bottom: 8px;
+  color: #dddddd;
+  font-size: 14px;
+}
+
+.registro-contenedor input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  background-color: #1b1b1b;
+  border: 1px solid #444444;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.registro-contenedor input:focus {
+  outline: none;
+  border-color: #d4af37;
+}
+
+/* Boton de registro */
+.registro-boton {
+  width: 100%;
+  background-color: #d4af37;
+  color: #111111;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.registro-boton:hover {
+  background-color: #f0ce65;
+}
+
+/* Mensaje de validacion */
+.registro-mensaje {
+  color: #d4af37;
+  font-size: 14px;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* Enlace al login */
+.registro-login {
+  margin-top: 28px;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+.registro-login a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.registro-login a:hover {
+  text-decoration: underline;
+}
+
+/* Volver al inicio */
+.registro-volver {
+  display: inline-block;
+  margin-top: 18px;
+  color: #dddddd;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.registro-volver:hover {
+  color: #d4af37;
+}
+
+/* Adaptacion a celulares */
+@media (max-width: 480px) {
+  .registro-contenedor {
+    padding: 30px 22px;
+  }
+
+  .registro-contenedor h1 {
+    font-size: 29px;
+  }
+}
