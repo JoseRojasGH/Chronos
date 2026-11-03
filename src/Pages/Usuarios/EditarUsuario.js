@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Alert, Card } from 'react-bootstrap';
+import PanelAdmin from '../../components/admin/PanelAdmin';
 import UsuarioForm from '../../components/usuarios/UsuarioForm';
 import { actualizar, obtenerPorId } from '../../services/usuarioService';
 
@@ -11,10 +13,11 @@ function EditarUsuario() {
 
   if (!usuario) {
     return (
-      <main>
+      <PanelAdmin>
         <h1>Usuario no encontrado</h1>
-        <Link to="/admin-usuarios-lista">Volver a la lista</Link>
-      </main>
+        <p className="texto-suave">Puede que lo hayan eliminado. Revisa la lista actualizada.</p>
+        <Link to="/admin-usuarios-lista" className="btn btn-chronos-contorno">Volver a la lista</Link>
+      </PanelAdmin>
     );
   }
 
@@ -28,11 +31,23 @@ function EditarUsuario() {
   }
 
   return (
-    <main>
-      <h1>Editar usuario</h1>
-      {mensajeError && <p role="alert">{mensajeError}</p>}
-      <UsuarioForm modo="editar" usuarioInicial={usuario} onGuardar={guardar} />
-    </main>
+    <PanelAdmin>
+      <div className="encabezado-pagina">
+        <div>
+          <h1>Editar usuario</h1>
+          <p className="texto-suave mb-0">{usuario.nombreCompleto}</p>
+        </div>
+        <Link to="/admin-usuarios-lista" className="enlace-admin">Volver a la lista</Link>
+      </div>
+      {mensajeError && (
+        <Alert variant="danger" dismissible onClose={() => setMensajeError('')}>{mensajeError}</Alert>
+      )}
+      <Card>
+        <Card.Body className="p-4">
+          <UsuarioForm modo="editar" usuarioInicial={usuario} onGuardar={guardar} />
+        </Card.Body>
+      </Card>
+    </PanelAdmin>
   );
 }
 

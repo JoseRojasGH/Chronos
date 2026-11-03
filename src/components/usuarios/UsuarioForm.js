@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { ROLES } from '../../models/Usuario';
 import { validarUsuario } from '../../utils/validacionesUsuario';
 
-// Formulario compartido por Registro (tienda), CrearUsuario y EditarUsuario (admin).
+// Formulario compartido por CrearUsuario y EditarUsuario (admin).
 // Props:
 //   modo: "registro" | "crear" | "editar"
 //   usuarioInicial: objeto usuario (solo en modo "editar")
@@ -48,44 +49,75 @@ function UsuarioForm({ modo = 'crear', usuarioInicial = null, onGuardar }) {
   }
 
   return (
-    <form onSubmit={manejarEnvio} noValidate>
-      <Campo etiqueta="Nombre" name="nombre" valor={datos.nombre}
-        onChange={manejarCambio} error={errores.nombre} />
-      <Campo etiqueta="Apellido" name="apellido" valor={datos.apellido}
-        onChange={manejarCambio} error={errores.apellido} />
-      <Campo etiqueta="Correo" name="correo" type="email" valor={datos.correo}
-        onChange={manejarCambio} error={errores.correo} />
-      <Campo
-        etiqueta={esEdicion ? 'Nueva contraseña (dejar vacía para no cambiarla)' : 'Contraseña'}
-        name="contrasena" type="password" valor={datos.contrasena}
-        onChange={manejarCambio} error={errores.contrasena} />
-      <Campo etiqueta="Confirmar contraseña" name="confirmacion" type="password"
-        valor={datos.confirmacion} onChange={manejarCambio} />
-
-      {mostrarRol && (
-        <div>
-          <label htmlFor="rol">Rol</label>
-          <select id="rol" name="rol" value={datos.rol} onChange={manejarCambio}>
-            <option value={ROLES.CLIENTE}>Cliente</option>
-            <option value={ROLES.ADMIN}>Administrador</option>
-          </select>
+    <Form onSubmit={manejarEnvio} noValidate>
+      <div className="row g-3">
+        <div className="col-12 col-sm-6">
+          <Campo etiqueta="Nombre" name="nombre" valor={datos.nombre}
+            onChange={manejarCambio} error={errores.nombre} autoComplete="given-name" />
         </div>
-      )}
+        <div className="col-12 col-sm-6">
+          <Campo etiqueta="Apellido" name="apellido" valor={datos.apellido}
+            onChange={manejarCambio} error={errores.apellido} autoComplete="family-name" />
+        </div>
+        <div className="col-12">
+          <Campo etiqueta="Correo" name="correo" type="email" valor={datos.correo}
+            onChange={manejarCambio} error={errores.correo} autoComplete="email" />
+        </div>
+        <div className="col-12 col-sm-6">
+          <Campo
+            etiqueta={esEdicion ? 'Nueva contraseña' : 'Contraseña'}
+            ayuda={esEdicion ? 'Déjala vacía para no cambiarla.' : 'Mínimo 8 caracteres, con una mayúscula y un número.'}
+            name="contrasena" type="password" valor={datos.contrasena}
+            onChange={manejarCambio} error={errores.contrasena} autoComplete="new-password" />
+        </div>
+        <div className="col-12 col-sm-6">
+          <Campo etiqueta="Confirmar contraseña" name="confirmacion" type="password"
+            valor={datos.confirmacion} onChange={manejarCambio} autoComplete="new-password" />
+        </div>
 
-      <button type="submit">{TEXTO_BOTON[modo]}</button>
-    </form>
+        {mostrarRol && (
+          <div className="col-12 col-sm-6">
+            <Form.Group controlId="rol">
+              <Form.Label>Rol</Form.Label>
+              <Form.Select name="rol" value={datos.rol} onChange={manejarCambio}>
+                <option value={ROLES.CLIENTE}>Cliente</option>
+                <option value={ROLES.ADMIN}>Administrador</option>
+              </Form.Select>
+            </Form.Group>
+          </div>
+        )}
+      </div>
+
+      <div className="d-grid d-sm-block mt-4">
+        <Button type="submit" className="btn-chronos px-4">{TEXTO_BOTON[modo]}</Button>
+      </div>
+    </Form>
   );
 }
 
-// Componente interno para no repetir label + input + error en cada campo.
-function Campo({ etiqueta, name, type = 'text', valor, onChange, error }) {
+// Componente interno para no repetir etiqueta + campo + ayuda + error.
+// Mismo patrón que Contacto: isInvalid + Form.Control.Feedback enlazado con aria-describedby.
+function Campo({ etiqueta, ayuda, name, type = 'text', valor, onChange, error, autoComplete }) {
+  const idAyuda = ayuda ? `${name}-ayuda` : undefined;
+  const idError = error ? `${name}-error` : undefined;
+  const descritoPor = [idAyuda, idError].filter(Boolean).join(' ') || undefined;
+
   return (
-    <div>
-      <label htmlFor={name}>{etiqueta}</label>
-      <input id={name} name={name} type={type} value={valor} onChange={onChange}
-        aria-invalid={Boolean(error)} />
-      {error && <p role="alert">{error}</p>}
-    </div>
+    <Form.Group controlId={name}>
+      <Form.Label>{etiqueta}</Form.Label>
+      <Form.Control
+        name={name}
+        type={type}
+        value={valor}
+        onChange={onChange}
+        autoComplete={autoComplete}
+        isInvalid={Boolean(error)}
+        aria-invalid={Boolean(error)}
+        aria-describedby={descritoPor}
+      />
+      {ayuda && <Form.Text id={idAyuda} className="texto-suave">{ayuda}</Form.Text>}
+      <Form.Control.Feedback id={idError} type="invalid">{error}</Form.Control.Feedback>
+    </Form.Group>
   );
 }
 
