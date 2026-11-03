@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { eliminar, obtenerTodos } from '../services/usuarioService';
+import { eliminar, obtenerTodos } from '../../services/usuarioService';
 
 function MostrarUsuarios() {
   const [usuarios, setUsuarios] = useState(() => obtenerTodos());
+  const [mensajeError, setMensajeError] = useState('');
 
   function eliminarUsuario(usuario) {
     if (!window.confirm(`¿Eliminar a ${usuario.nombreCompleto}?`)) return;
-    eliminar(usuario.id);
-    setUsuarios(obtenerTodos());
+    try {
+      eliminar(usuario.id);
+      setMensajeError('');
+      setUsuarios(obtenerTodos());
+    } catch (error) {
+      setMensajeError(error.message);
+    }
   }
 
   if (usuarios.length === 0) {
@@ -24,10 +30,11 @@ function MostrarUsuarios() {
   return (
     <main>
       <h1>Usuarios</h1>
+      {mensajeError && <p role="alert">{mensajeError}</p>}
       <Link to="/admin-usuarios-nuevo">Crear usuario</Link>
       <table>
         <thead>
-          <tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Acciones</th></tr>
+          <tr><th>Nombre</th><th>Correo</th><th>Rolx</th><th>Acciones</th></tr>
         </thead>
         <tbody>
           {usuarios.map((u) => (

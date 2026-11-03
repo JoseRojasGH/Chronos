@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { obtenerTodos } from '../services/usuarioService';
+import { obtenerTodos } from '../../services/usuarioService';
 
 function HomeUsuarios() {
   const totalUsuarios = obtenerTodos().length;
