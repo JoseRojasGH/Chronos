@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# llaves de AWS (nunca subirlas al repositorio)
+*.pem
