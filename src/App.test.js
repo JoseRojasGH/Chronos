@@ -3,5 +3,5 @@ import App from './App';
 
 test('muestra la página de inicio', () => {
   render(<App />);
-  expect(screen.getByText(/bienvenido/i)).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /el tiempo define/i })).toBeInTheDocument();
 });
