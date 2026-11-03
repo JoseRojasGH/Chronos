@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { obtenerTodos } from '../../services/usuarioService';
+import BotonCerrarSesion from '../../components/sesion/BotonCerrarSesion';
 
 function HomeUsuarios() {
   const totalUsuarios = obtenerTodos().length;
@@ -14,6 +15,7 @@ function HomeUsuarios() {
         {' | '}
         <Link to="/admin-usuarios-lista">Ver usuarios</Link>
       </nav>
+      <BotonCerrarSesion />
     </main>
   );
 }

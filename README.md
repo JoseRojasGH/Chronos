@@ -9,7 +9,7 @@ Varias partes del proyecto leen y escriben la misma información en `localStorag
 | Datos | Clave en localStorage | Forma del objeto | Cómo leer y escribir |
 |---|---|---|---|
 | Usuarios | `chronos_usuarios` | `src/models/Usuario.js` | Solo mediante `src/services/usuarioService.js` |
-| Sesión | Pendiente (la define Login) | Pendiente | Pendiente |
+| Sesión | `chronos_sesion` | `{ id, rol }` (nunca la contraseña) | Solo mediante `src/services/sesionService.js` |
 | Productos | Pendiente (la define el módulo de productos) | Pendiente | Pendiente |
 
 ### Reglas
@@ -41,9 +41,17 @@ Reglas:
 
 Para buscar un usuario por correo, usar `obtenerPorCorreo(correo)` de `usuarioService`. Ignora mayúsculas y espacios, y devuelve `null` si no existe. Comparar la contraseña y guardar la sesión es responsabilidad del módulo de Login.
 
+### Sesión y rutas protegidas
+
+- Login llama a `guardarSesion(usuario)` después de validar correo y contraseña.
+- `obtenerSesion()` devuelve el usuario actual **leído de nuevo** desde `usuarioService`, o `null`. Si el usuario fue eliminado, la sesión se borra; si le quitaron el rol admin, deja de ser admin. Nunca confiar en el `rol` guardado en la sesión.
+- Todas las rutas `/admin-*` van dentro de `<Route element={<RutaProtegida />}>` en `App.js`. Sin sesión redirige a `/login`; con rol cliente, a `/`. **Toda ruta admin nueva debe agregarse dentro de ese bloque.**
+- Para cerrar sesión, usar el componente `BotonCerrarSesion` (`src/components/sesion/`).
+
 ### Deuda técnica conocida
 
 - Las contraseñas se guardan en texto plano en `localStorage` porque el proyecto no tiene backend. No es un sistema de autenticación real.
+- La protección de rutas es solo de interfaz: quien edite `localStorage` desde las herramientas del navegador puede saltársela. Sin backend no hay forma de evitarlo.
 
 ---
 
