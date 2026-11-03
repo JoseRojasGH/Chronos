@@ -16,6 +16,7 @@ import HomeUsuarios from './Pages/Usuarios/HomeUsuarios';
 import CrearUsuario from './Pages/Usuarios/CrearUsuario';
 import MostrarUsuarios from './Pages/Usuarios/MostrarUsuarios';
 import EditarUsuario from './Pages/Usuarios/EditarUsuario';
+import RutaProtegida from './components/sesion/RutaProtegida';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -31,15 +32,18 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog1" element={<Blog1 />} />
           <Route path="/blog2" element={<Blog2 />} />
-          <Route path="/admin-home" element={<HomeAdmin />} />
-          <Route path="/admin-productos" element={<HomeProductos />} />
-          <Route path="/admin-usuarios" element={<HomeUsuarios />} />
-          <Route path="/admin-usuarios-nuevo" element={<CrearUsuario />} />
-          <Route path="/admin-productos-nuevo" element={<CrearProducto />} />
-          <Route path="/admin-usuarios-lista" element={<MostrarUsuarios />} />
-          <Route path="/admin-productos-lista" element={<MostrarProductos />} />
-          <Route path="/admin-usuarios-editar/:id" element={<EditarUsuario />} />
-          <Route path="/admin-productos-editar/:id" element={<EditarProducto />} />
+          {/* Panel admin: solo con sesión de administrador (ver RutaProtegida) */}
+          <Route element={<RutaProtegida />}>
+            <Route path="/admin-home" element={<HomeAdmin />} />
+            <Route path="/admin-productos" element={<HomeProductos />} />
+            <Route path="/admin-usuarios" element={<HomeUsuarios />} />
+            <Route path="/admin-usuarios-nuevo" element={<CrearUsuario />} />
+            <Route path="/admin-productos-nuevo" element={<CrearProducto />} />
+            <Route path="/admin-usuarios-lista" element={<MostrarUsuarios />} />
+            <Route path="/admin-productos-lista" element={<MostrarProductos />} />
+            <Route path="/admin-usuarios-editar/:id" element={<EditarUsuario />} />
+            <Route path="/admin-productos-editar/:id" element={<EditarProducto />} />
+          </Route>
         </Routes>
     </BrowserRouter>
   );
