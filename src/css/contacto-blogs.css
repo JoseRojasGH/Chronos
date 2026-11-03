@@ -1,0 +1,73 @@
+/* Estilos de Contacto y Blog.
+   Todo va dentro de .pagina-chronos para no afectar a otras páginas.
+   También corrige reglas globales de productos.css (input, button, form, h2)
+   que se aplican a toda la app. */
+
+.pagina-chronos {
+  color: #f5f5f5;
+}
+
+/* Títulos y textos que van directo sobre el fondo oscuro */
+.pagina-chronos .titulo-pagina {
+  color: #ffffff;
+}
+
+.pagina-chronos .subtitulo-pagina {
+  color: #d4af37;
+  letter-spacing: 0.05em;
+}
+
+.pagina-chronos .enlace-volver {
+  color: #d4af37;
+  text-decoration: none;
+}
+
+.pagina-chronos .enlace-volver:hover {
+  color: #f0ce65;
+}
+
+/* Tarjetas: fondo blanco y texto oscuro para que se lea sobre la imagen */
+.pagina-chronos .card {
+  color: #212529;
+}
+
+.pagina-chronos .card h1,
+.pagina-chronos .card h2 {
+  color: #101010;
+}
+
+/* Botón dorado, igual que "Iniciar sesión" de la barra de navegación */
+.pagina-chronos .btn-chronos {
+  background-color: #d4af37;
+  border-color: #d4af37;
+  color: #101010;
+  font-weight: 600;
+}
+
+.pagina-chronos .btn-chronos:hover,
+.pagina-chronos .btn-chronos:focus {
+  background-color: #f0ce65;
+  border-color: #f0ce65;
+  color: #101010;
+}
+
+/* Deshace reglas globales de productos.css dentro de estas páginas */
+.pagina-chronos form {
+  background-color: transparent;
+  padding: 0;
+}
+
+.pagina-chronos input.form-control {
+  width: 100%;
+  height: auto;
+}
+
+.pagina-chronos .btn {
+  width: auto;
+  height: auto;
+}
+
+.pagina-chronos .btn-close {
+  width: 1em;
+  height: 1em;
+}

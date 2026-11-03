@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Badge, Card, Col, Container, Row } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import '../css/contacto-blogs.css';
 
 // Lista de artículos. Cada uno enlaza a su página (/blog1, /blog2) definida en App.js.
 const BLOGS = [
@@ -28,9 +29,9 @@ function Blogs() {
   return (
     <>
       <Navbar />
-      <Container as="main" className="py-4 py-md-5">
-        <h1 className="mb-1">Blog</h1>
-        <p className="text-muted mb-4">Guías y consejos sobre relojes.</p>
+      <Container as="main" className="pagina-chronos py-4 py-md-5">
+        <h1 className="titulo-pagina mb-1">Blog</h1>
+        <p className="subtitulo-pagina mb-4">Guías y consejos sobre relojes.</p>
 
         {/* Responsivo: 1 tarjeta por fila en celular (xs), 2 por fila desde tablet (md) */}
         <Row xs={1} md={2} className="g-4">
@@ -45,7 +46,7 @@ function Blogs() {
                   <Card.Subtitle className="mb-2 text-muted small">{blog.fecha}</Card.Subtitle>
                   <Card.Text>{blog.resumen}</Card.Text>
                   {/* mt-auto deja el botón abajo aunque los textos midan distinto */}
-                  <Link to={blog.ruta} className="btn btn-dark mt-auto align-self-start">
+                  <Link to={blog.ruta} className="btn btn-chronos mt-auto align-self-start">
                     Leer más
                   </Link>
                 </Card.Body>
