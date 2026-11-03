@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { obtenerPorCorreo } from '../services/usuarioService';
+import { guardarSesion } from '../services/sesionService';
 import { ROLES } from '../models/Usuario';
 import './Login.css';
 
@@ -29,6 +30,7 @@ function Login() {
     }
 
     setMensaje('');
+    guardarSesion(usuario);
 
     if (usuario.rol === ROLES.ADMIN) {
       navigate('/admin-home');
