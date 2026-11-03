@@ -1,42 +1,59 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+import PanelAdmin from '../components/admin/PanelAdmin';
+import { obtenerSesion } from '../services/sesionService';
+
+// PENDIENTE (José): cambiar a true cuando HomeProductos.js tenga su componente.
+// Mientras esté en false, la tarjeta se muestra deshabilitada para no navegar
+// a una página vacía (que hoy hace caer la aplicación).
+const PRODUCTOS_DISPONIBLE = false;
+
+const SECCIONES = [
+  {
+    titulo: 'Usuarios',
+    descripcion: 'Crea cuentas, cambia roles y elimina usuarios registrados.',
+    ruta: '/admin-usuarios',
+    textoBoton: 'Administrar usuarios',
+    disponible: true,
+  },
+  {
+    titulo: 'Productos',
+    descripcion: 'Agrega relojes al catálogo, edita precios y retira modelos.',
+    ruta: '/admin-productos',
+    textoBoton: 'Administrar productos',
+    disponible: PRODUCTOS_DISPONIBLE,
+  },
+];
 
 function HomeAdmin() {
+  const usuario = obtenerSesion();
+
   return (
-    <div className="home-admin">
-
-      <header className="header-admin">
-        <h1>CHRONOS</h1>
-        <h2>Panel de Administración</h2>
-      </header>
-
-      <main className="contenido-admin">
-        <h2>Bienvenido, Administrador</h2>
-        <p>Selecciona la sección que deseas administrar.</p>
-
-        <div className="opciones-admin">
-
-          <div className="tarjeta-admin">
-            <h3>Usuarios</h3>
-            <p>Gestionar los usuarios registrados.</p>
-            <Link to="/admin-usuarios">
-              Administrar Usuarios
-            </Link>
-          </div>
-
-          <div className="tarjeta-admin">
-            <h3>Productos</h3>
-            <p>Gestionar los productos de la tienda.</p>
-            <Link to="/admin-productos">
-              Administrar Productos
-            </Link>
-          </div>
-
+    <PanelAdmin>
+      <div className="encabezado-pagina">
+        <div>
+          <h1>Hola, {usuario?.nombre ?? 'Administrador'}</h1>
+          <p className="texto-suave mb-0">Elige qué parte de la tienda quieres administrar.</p>
         </div>
-      </main>
+      </div>
 
-    </div>
+      <div className="opciones-admin">
+        {SECCIONES.map((s) => (
+          <Card key={s.ruta} className={`tarjeta-admin ${s.disponible ? '' : 'tarjeta-admin--pendiente'}`}>
+            <Card.Body className="p-4 d-flex flex-column">
+              <h2>{s.titulo}</h2>
+              <p className="texto-suave flex-grow-1">{s.descripcion}</p>
+              {s.disponible ? (
+                <Link to={s.ruta} className="btn btn-chronos align-self-start">{s.textoBoton}</Link>
+              ) : (
+                <p className="aviso-pendiente mb-0">Disponible próximamente</p>
+              )}
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+    </PanelAdmin>
   );
 }
 
