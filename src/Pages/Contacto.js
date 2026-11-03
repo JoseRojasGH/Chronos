@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Alert, Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import '../css/contacto-blogs.css';
 
 // Misma regla de correo que src/utils/validacionesUsuario.js (registro de usuarios).
 const REGEX_CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -37,7 +38,7 @@ function Contacto() {
   return (
     <>
       <Navbar />
-      <Container as="main" className="py-4 py-md-5">
+      <Container as="main" className="pagina-chronos py-4 py-md-5">
         <Row className="justify-content-center">
           {/* Ancho completo en celular, más angosto en pantallas grandes */}
           <Col xs={12} md={8} lg={6}>
@@ -105,7 +106,7 @@ function Contacto() {
 
                   {/* d-grid: botón a todo el ancho en celular; d-sm-block: tamaño normal desde 576px */}
                   <div className="d-grid d-sm-block">
-                    <Button type="submit" variant="dark" disabled={isSubmitting}>
+                    <Button type="submit" className="btn-chronos" disabled={isSubmitting}>
                       Enviar mensaje
                     </Button>
                   </div>
