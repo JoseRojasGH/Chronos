@@ -16,7 +16,7 @@ import relojDiesel from '../img/relojdiesel.png';
 import relojSwatch from '../img/relojswatch.png';
 import relojTissot from '../img/relojtissot.png';
 
-const PRODUCTOS = [
+const PRODUCTOS_INICIALES = [
   { id: 1, nombre: 'Michael Kors', precio: 199990, imagen: relojMk, descripcion: 'Estilo moderno y sofisticado, Cronógrafo con caja de acero inoxidable y diseño icónico' },
   { id: 2, nombre: 'Rolex', precio: 8990000, imagen: relojRolex, descripcion: 'Rendimiento y elegancia en una pieza legendaria. Resistente al agua hasta 300 metros' },
   { id: 3, nombre: 'Tommy Hilfiger', precio: 149990, imagen: relojTommy, descripcion: 'Diseño deportivo y elegante, correa de cuero, cronógrafo y detalles en los colores icónicos' },
@@ -32,6 +32,27 @@ const PRODUCTOS = [
 ];
 
 export default function Productos() {
+  const [productos, setProductos] = useState(() => {
+    const guardados = localStorage.getItem('productos');
+    if (guardados) {
+      return JSON.parse(guardados);
+    } else {
+      localStorage.setItem('productos', JSON.stringify(PRODUCTOS_INICIALES));
+      return PRODUCTOS_INICIALES;
+    }
+  });
+
+  // Escuchador para actualizar los productos en tiempo real al navegar o cambiar de pestaña
+  useEffect(() => {
+    const actualizarProductos = (e) => {
+      if (e.key === 'productos') {
+        setProductos(e.newValue ? JSON.parse(e.newValue) : []);
+      }
+    };
+    window.addEventListener('storage', actualizarProductos);
+    return () => window.removeEventListener('storage', actualizarProductos);
+  }, []);
+
   // Carrito persistente en localStorage
   const [carrito, setCarrito] = useState(() => {
     const guardado = localStorage.getItem('carrito');
@@ -47,12 +68,10 @@ export default function Productos() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   }, [carrito]);
 
-  // Equivalente a formatearPrecio(numero)
   const formatearPrecio = (numero) => {
     return '$' + numero.toLocaleString('es-CL');
   };
 
-  // Cantidad en la tarjeta (no baja de 0)
   const cambiarCantidad = (id, delta) => {
     setCantidades((prev) => ({
       ...prev,
@@ -60,7 +79,6 @@ export default function Productos() {
     }));
   };
 
-  // Agregar desde tarjeta
   const agregarAlCarrito = (producto, cantidad) => {
     if (cantidad <= 0) return;
 
@@ -74,22 +92,18 @@ export default function Productos() {
       return [...prev, { ...producto, cantidad }];
     });
 
-    // Resetea input de la tarjeta a 0
     setCantidades((prev) => ({ ...prev, [producto.id]: 0 }));
   };
 
-  // Abrir Modal (Resetea la cantidad a 1)
   const abrirModal = (producto) => {
     setProductoModal(producto);
     setCantidadModal(1);
   };
 
-  // Cantidad dentro del modal (No baja de 1)
   const cambiarCantidadModal = (delta) => {
     setCantidadModal((prev) => Math.max(1, prev + delta));
   };
 
-  // Modificar cantidad desde dentro del carrito desplegable
   const cambiarCantidadCarrito = (id, delta) => {
     setCarrito((prev) =>
       prev
@@ -113,19 +127,17 @@ export default function Productos() {
 
   return (
     <>
-      {/* Navegación */}
-      
       <Navbar 
         totalItems={totalItems} 
         onAbrirCarrito={() => setCarritoAbierto(true)} 
       />
 
-      {/* Catálogo de Productos */}
       <div className="productos-container">
         <h2 className="titulo-catalogo">Catálogo Disponible</h2>
 
         <div className="productos-grid">
-          {PRODUCTOS.map((prod) => (
+          {/* ✅ AQUÍ CAMBIAMOS PRODUCTOS_INICIALES POR productos */}
+          {productos.map((prod) => (
             <div key={prod.id} className="producto-card" data-nombre={prod.nombre} data-precio={prod.precio}>
               <img
                 src={prod.imagen}
@@ -255,8 +267,7 @@ export default function Productos() {
         </div>
       </div>
 
-    <Footer></Footer>
-
+      <Footer />
     </>
   );
 }

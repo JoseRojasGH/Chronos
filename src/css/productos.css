@@ -481,3 +481,153 @@ body > table img {
         right: -90vw;
     }
 }
+
+
+/* Contenedor principal para centrar el panel */
+.admin-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+/* Tarjeta contenedora con fondo blanco */
+.admin-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  color: #333333;
+}
+
+.admin-titulo {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #111111;
+  font-size: 1.8rem;
+}
+
+/* Estilos de la Tabla */
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-productos th {
+  padding: 12px;
+  text-align: left;
+  color: #444444;
+  border-bottom: 2px solid #eeeeee;
+  background-color: #f8f9fa;
+}
+
+.tabla-productos td {
+  padding: 12px;
+  color: #222222;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.col-acciones {
+  text-align: center;
+}
+
+/* Inputs de edición dentro de la tabla */
+.input-edicion {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+
+/* Botones de acción base */
+.btn-accion {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.btn-accion:hover {
+  opacity: 0.9;
+}
+
+/* Botón Editar: Fondo transparente con borde dorado elegante */
+.btn-editar {
+  background-color: transparent;
+  color: #c5a059;
+  border: 1px solid #c5a059;
+  margin-right: 10px;
+}
+
+.btn-editar:hover {
+  background-color: #c5a059;
+  color: #111111;
+}
+
+/* Botón Eliminar: Rojo sobrio */
+.btn-eliminar {
+  background-color: transparent;
+  color: #e65c5c;
+  border: 1px solid #e65c5c;
+}
+
+.btn-eliminar:hover {
+  background-color: #e65c5c;
+  color: #ffffff;
+}
+
+/* Botón Guardar (Modo Edición): Dorado metálico sólido */
+.btn-guardar {
+  background-color: #d4af37;
+  color: #111111;
+  margin-right: 8px;
+}
+
+/* Botón Cancelar (Modo Edición): Gris neutro */
+.btn-cancelar {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+
+/* Botones principales del Panel de Administración */
+.btn-panel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 180px;
+  text-align: center;
+  line-height: 1.2;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+/* Botón Crear Producto (Dorado sólido) */
+.btn-panel-crear {
+  background-color: #d4af37;
+  color: #111111;
+  border: 2px solid #d4af37;
+}
+
+.btn-panel-crear:hover {
+  background-color: #c5a059;
+  border-color: #c5a059;
+}
+
+/* Botón Mostrar Productos (Borde dorado, fondo transparente) */
+.btn-panel-listar {
+  background-color: transparent;
+  color: #d4af37;
+  border: 2px solid #d4af37;
+}
+
+.btn-panel-listar:hover {
+  background-color: #d4af37;
+  color: #111111;
+}

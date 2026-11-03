@@ -62,3 +62,7 @@
 .boton-login:hover {
   background-color: #f0ce65;
 }
+
+h1{
+  align-self: left;
+}
