@@ -2,37 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function Home() {
   return (
     <div className="home">
 
-      {/* Encabezado */}
-      <header className="header-home">
-
-        <Link to="/" className="logo-home">
-          <img src="/img/logo.png" alt="CHRONOS" />
-        </Link>
-
-        <nav className="menu-home">
-          <Link to="/">Inicio</Link>
-          <Link to="/productos">Productos</Link>
-          <Link to="/nosotros">Nosotros</Link>
-          <Link to="/blogs">Blogs</Link>
-          <Link to="/contacto">Contacto</Link>
-        </nav>
-
-        <div className="cuenta-home">
-          <Link to="/registro" className="enlace-registro">
-            Registrarse
-          </Link>
-
-          <Link to="/login" className="boton-login">
-            Iniciar sesión
-          </Link>
-        </div>
-
-      </header>
+      <Navbar></Navbar>
 
       {/* Presentacion principal */}
       <main
@@ -185,39 +162,9 @@ function Home() {
           Descubrir relojes
         </Link>
 
-      </section>
+      </section>   
 
-      {/* Pie de pagina */}
-      <footer className="footer-home">
-
-        <div className="footer-contenido">
-
-          <div className="footer-marca">
-            <h2>CHRONOS</h2>
-            <p>Elegancia y estilo en cada segundo.</p>
-          </div>
-
-          <div className="footer-enlaces">
-            <h3>Explorar</h3>
-            <Link to="/">Inicio</Link>
-            <Link to="/productos">Productos</Link>
-            <Link to="/nosotros">Nosotros</Link>
-          </div>
-
-          <div className="footer-enlaces">
-            <h3>Tu cuenta</h3>
-            <Link to="/login">Iniciar sesión</Link>
-            <Link to="/registro">Registrarse</Link>
-            <Link to="/contacto">Contacto</Link>
-          </div>
-
-        </div>
-
-        <div className="footer-final">
-          © 2026 CHRONOS. Todos los derechos reservados.
-        </div>
-
-      </footer>
+      <Footer></Footer>   
 
     </div>
   );

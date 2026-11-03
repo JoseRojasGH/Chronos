@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/productos.css';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 import relojMk from '../img/relojmk.png';
 import relojRolex from '../img/relojrolex.png';
@@ -254,10 +255,8 @@ export default function Productos() {
         </div>
       </div>
 
-      <footer>
-        <p>Tienda de Relojes</p>
-        <p>Todos los derechos reservados 2026</p>
-      </footer>
+    <Footer></Footer>
+
     </>
   );
 }

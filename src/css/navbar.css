@@ -1,0 +1,64 @@
+/* Encabezado */
+.header-home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 20px 5%;
+  background-color: #0b0b0b;
+  border-bottom: 1px solid #302718;
+}
+
+.logo-home img {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.menu-home {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.menu-home a,
+.cuenta-home a {
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.menu-home a {
+  color: #dddddd;
+}
+
+.menu-home a:hover {
+  color: #d4af37;
+}
+
+.cuenta-home {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.enlace-registro {
+  color: #dddddd;
+}
+
+.enlace-registro:hover {
+  color: #d4af37;
+}
+
+.boton-login {
+  color: #101010;
+  background-color: #d4af37;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.boton-login:hover {
+  background-color: #f0ce65;
+}
