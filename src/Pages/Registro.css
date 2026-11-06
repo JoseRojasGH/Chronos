@@ -92,11 +92,17 @@
   color: #111111;
   border: none;
   border-radius: 5px;
-  padding: 15px;
+  padding: 12px 15px; 
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-sizing: border-box;
 }
 
 .registro-boton:hover {
