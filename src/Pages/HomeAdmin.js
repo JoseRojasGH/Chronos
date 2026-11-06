@@ -4,10 +4,7 @@ import { Card } from 'react-bootstrap';
 import PanelAdmin from '../components/admin/PanelAdmin';
 import { obtenerSesion } from '../services/sesionService';
 
-// PENDIENTE (José): cambiar a true cuando HomeProductos.js tenga su componente.
-// Mientras esté en false, la tarjeta se muestra deshabilitada para no navegar
-// a una página vacía (que hoy hace caer la aplicación).
-const PRODUCTOS_DISPONIBLE = false;
+
 
 const SECCIONES = [
   {
@@ -22,7 +19,7 @@ const SECCIONES = [
     descripcion: 'Agrega relojes al catálogo, edita precios y retira modelos.',
     ruta: '/admin-productos',
     textoBoton: 'Administrar productos',
-    disponible: PRODUCTOS_DISPONIBLE,
+    disponible: true,
   },
 ];
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../../css/productos.css';
+import PanelAdmin from '../../components/admin/PanelAdmin';
+import { Button, Card } from 'react-bootstrap';
 
 const IMAGEN_PLACEHOLDER = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="300" height="300" fill="%231a1a1a"/><path d="M75 75 L225 225 M225 75 L75 225" stroke="%23c5a059" stroke-width="8" stroke-linecap="round"/></svg>`;
 
@@ -75,94 +77,89 @@ export default function CrearProducto() {
   };
 
   return (
-    <>
-      <div className="admin-container">
-        <div className="admin-card" style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <h2 className="admin-titulo">Crear Nuevo Producto</h2>
-
-          {error && (
-            <div style={{ color: '#e65c5c', backgroundColor: 'rgba(230, 92, 92, 0.1)', padding: '10px', borderRadius: '6px', marginBottom: '15px', textAlign: 'center' }}>
-              {error}
-            </div>
-          )}
-
-          {exito && (
-            <div style={{ color: '#28a745', backgroundColor: 'rgba(40, 167, 69, 0.1)', padding: '10px', borderRadius: '6px', marginBottom: '15px', textAlign: 'center' }}>
-              {exito}
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+      <PanelAdmin>
+          <div className="encabezado-pagina">
             <div>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: '500', color: '#333' }}>
-                Nombre del Reloj *
-              </label>
-              <input
-                type="text"
-                name="nombre"
-                className="input-edicion"
-                style={{ width: '100%', boxSizing: 'border-box' }}
-                value={formData.nombre}
-                onChange={handleChange}
-                placeholder="Ej: Tag Heuer Carrera"
-                required
-              />
+              <h1>Crear producto</h1>
             </div>
+            <Link to="/admin-productos-lista" className="enlace-admin">Volver a la lista</Link>
+          </div>
 
-            <div>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: '500', color: '#333' }}>
-                Precio (CLP) *
-              </label>
-              <input
-                type="number"
-                name="precio"
-                min="1"
-                className="input-edicion"
-                style={{ width: '100%', boxSizing: 'border-box' }}
-                value={formData.precio}
-                onChange={handleChange}
-                placeholder="Ej: 350000"
-                required
-              />
-            </div>
+        <Card>
+          <Card.Body className="p-4">
+            {error && (
+              <div style={{ color: '#e65c5c', backgroundColor: 'rgba(230, 92, 92, 0.1)', padding: '10px', borderRadius: '6px', marginBottom: '15px', textAlign: 'center' }}>
+                {error}
+              </div>
+            )}
 
-            <div>
-              <label style={{ display: 'block', marginBottom: '5px', fontWeight: '500', color: '#333' }}>
-                Descripción *
-              </label>
-              <textarea
-                name="descripcion"
-                rows="4"
-                className="input-edicion"
-                style={{ width: '100%', boxSizing: 'border-box', fontFamily: 'inherit' }}
-                value={formData.descripcion}
-                onChange={handleChange}
-                placeholder="Detalles sobre el diseño, resistencia, tipo de correa, etc."
-                required
-              />
-            </div>
+            {exito && (
+              <div style={{ color: '#28a745', backgroundColor: 'rgba(40, 167, 69, 0.1)', padding: '10px', borderRadius: '6px', marginBottom: '15px', textAlign: 'center' }}>
+                {exito}
+              </div>
+            )}
 
-            <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-              <button
-                type="submit"
-                className="btn-panel btn-panel-crear"
-                style={{ flex: 1, minWidth: 'auto' }}
-              >
-                Guardar Producto
-              </button>
-              <button
-                type="button"
-                className="btn-panel btn-panel-listar"
-                style={{ flex: 1, minWidth: 'auto' }}
-                onClick={() => navigate('/admin-productos')}
-              >
-                Cancelar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '5px', fontWeight: '500', color: '#FFFFFF' }}>
+                  Nombre del Reloj *
+                </label>
+                <input
+                  type="text"
+                  name="nombre"
+                  className="input-edicion"
+                  style={{ width: '100%', boxSizing: 'border-box' }}
+                  value={formData.nombre}
+                  onChange={handleChange}
+                  placeholder="Ej: Tag Heuer Carrera"
+                  required
+                />
+              </div>
 
-    </>
+              <div>
+                <label style={{ display: 'block', marginBottom: '5px', fontWeight: '500', color: '#FFFFFF' }}>
+                  Precio (CLP) *
+                </label>
+                <input
+                  type="number"
+                  name="precio"
+                  min="1"
+                  className="input-edicion"
+                  style={{ width: '100%', boxSizing: 'border-box' }}
+                  value={formData.precio}
+                  onChange={handleChange}
+                  placeholder="Ej: 350000"
+                  required
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', marginBottom: '5px', fontWeight: '500', color: '#FFFFFF' }}>
+                  Descripción *
+                </label>
+                <textarea
+                  name="descripcion"
+                  rows="4"
+                  className="input-edicion"
+                  style={{ width: '100%', boxSizing: 'border-box', fontFamily: 'inherit' }}
+                  value={formData.descripcion}
+                  onChange={handleChange}
+                  placeholder="Detalles sobre el diseño, resistencia, tipo de correa, etc."
+                  required
+                />
+              </div>
+
+              <div className="d-grid d-sm-block mt-4">
+                <Button
+                  type="submit"
+                  className="btn-chronos px-4"
+                >
+                  Guardar Cambios
+                </Button>
+              </div>
+            </form>
+          </Card.Body>
+        </Card>
+      </PanelAdmin>
   );
 }

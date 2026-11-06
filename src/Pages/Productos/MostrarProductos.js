@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../../css/productos.css';
+import PanelAdmin from '../../components/admin/PanelAdmin';
+import { Button, Modal, Card, Alert, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 
 const PRODUCTOS_INICIALES = [
   { id: 1, nombre: 'Michael Kors', precio: 199990, imagen: '/img/relojmk.png', descripcion: 'Estilo moderno y sofisticado' },
@@ -17,8 +21,10 @@ const PRODUCTOS_INICIALES = [
 ];
 
 export default function ListarProductos() {
+  const [porEliminar, setPorEliminar] = useState(null);
+  const [mensajeError, setMensajeError] = useState('');
   const [productos, setProductos] = useState(() => {
-    const guardados = localStorage.getItem('productos');
+  const guardados = localStorage.getItem('productos');
     if (guardados) {
       return JSON.parse(guardados);
     } else {
@@ -27,8 +33,8 @@ export default function ListarProductos() {
     }
   });
 
-  const [editandoId, setEditandoId] = useState(null);
-  const [formEdit, setFormEdit] = useState({ nombre: '', precio: '' });
+
+
 
   // Guardar en localStorage cada vez que cambia el estado
   useEffect(() => {
@@ -52,47 +58,102 @@ export default function ListarProductos() {
 
   const formatearPrecio = (numero) => '$' + Number(numero).toLocaleString('es-CL');
 
-  const eliminarProducto = (id) => {
-    if (window.confirm('¿Deseas eliminar este producto?')) {
-      const nuevaLista = productos.filter((p) => p.id !== id);
-      setProductos(nuevaLista);
-    }
-  };
-
-  const iniciarEdicion = (prod) => {
-    setEditandoId(prod.id);
-    setFormEdit({
-      nombre: prod.nombre,
-      precio: prod.precio
-    });
-  };
-
-  const guardarEdicion = (id) => {
-    const nombreLimpio = formEdit.nombre.trim();
-    const precioNumerico = parseInt(formEdit.precio, 10);
-
-    // Validación 1: Campos vacíos
-    if (!nombreLimpio || !formEdit.precio) {
-      alert('El nombre y el precio no pueden estar vacíos.');
-      return;
-    }
-
-    // Validación 2: Números negativos o cero
-    if (isNaN(precioNumerico) || precioNumerico <= 0) {
-      alert('El precio debe ser un número mayor a 0.');
-      return;
-    }
-
-    setProductos((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, nombre: nombreLimpio, precio: precioNumerico } : p
-      )
+  
+  const eliminar = (id) => {
+    setProductos(productosActuales => 
+      productosActuales.filter(producto => producto.id !== id)
     );
-    setEditandoId(null);
   };
+
+  function confirmarEliminacion() {
+      try {
+        eliminar(porEliminar.id);
+        setMensajeError('');
+      } catch (error) {
+        setMensajeError(error.message);
+      }
+      setPorEliminar(null);
+    }
+
+
+
+  if (productos.length === 0) {
+    return (
+      <PanelAdmin>
+        <h1>Productos</h1>
+        <Card className="mt-3">
+          <Card.Body className="p-4">
+            <p>No se encontraron productos registrados.</p>
+            <Link to="/admin-productos-nuevo" className="btn btn-chronos">Crear el primero</Link>
+          </Card.Body>
+        </Card>
+      </PanelAdmin>
+    );
+  }
+
 
   return (
-    <div>
+    <PanelAdmin>
+      <div className="encabezado-pagina">
+        <div>
+          <h1>Productos</h1>
+          <p className="texto-suave mb-0">{productos.length} en total</p>
+        </div>
+        <Link to="/admin-productos-nuevo" className="btn btn-chronos">Crear producto</Link>
+      </div>
+
+      {mensajeError && (
+        <Alert variant="danger" dismissible onClose={() => setMensajeError('')}>{mensajeError}</Alert>
+      )}
+
+      <Table responsive hover className="tabla-usuarios">
+        <thead>
+          <tr><th>Nombre</th><th>Precio</th><th className="text-end">Acciones</th></tr>
+        </thead>
+        <tbody>
+          {productos.map((p) => (
+            <tr key={p.id}>
+              <td>{p.nombre}</td>
+              <td>{formatearPrecio(p.precio)}</td>
+              <td className="text-end">
+                <Link to={`/admin-productos-editar/${p.id}`} className="btn btn-chronos-contorno btn-sm me-2">
+                  Editar
+                </Link>
+                <Button variant="outline-danger" size="sm" onClick={() => setPorEliminar(p)}>
+                  Eliminar
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <Modal
+        show={Boolean(porEliminar)}
+        onHide={() => setPorEliminar(null)}
+        centered
+        data-bs-theme="dark"
+        contentClassName="modal-chronos"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Eliminar producto</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          ¿Eliminar a <strong>{porEliminar?.nombre}</strong>? Esta acción no se puede deshacer.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="btn-chronos-contorno" onClick={() => setPorEliminar(null)}>Cancelar</Button>
+          <Button variant="danger" onClick={confirmarEliminacion}>Eliminar producto</Button>
+        </Modal.Footer>
+      </Modal>
+    </PanelAdmin>    
+  );
+}
+
+
+
+/*
+
+<div>
       <div className="admin-container">
       <div className="admin-card">
         <h2 className="admin-titulo">Administración de Productos</h2>
@@ -181,6 +242,5 @@ export default function ListarProductos() {
       </div>
     </div>
     </div>
-    
-  );
-}
+
+*/

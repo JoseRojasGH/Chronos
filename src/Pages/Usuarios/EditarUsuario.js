@@ -9,7 +9,7 @@ function EditarUsuario() {
   const { id } = useParams(); // viene de la ruta /admin-usuarios-editar/:id
   const navigate = useNavigate();
   const usuario = obtenerPorId(id);
-  const [mensajeError, setMensajeError] = useState('');
+  const [mensajeError, setMensajeError] = useState(''); 
 
   if (!usuario) {
     return (
